@@ -32,4 +32,14 @@ public class DaoTest {
         System.err.println(user.getUsername());
         System.err.println(user.getPassword());
     }
+
+    //add  user
+    @Test
+    public void addUser() {
+        User user = new User();
+        user.setUsername("lisi");
+        user.setPassword("123");
+        int result = userMapper.addUser(user);
+        System.err.println(result);
+    }
 }

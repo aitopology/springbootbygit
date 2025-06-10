@@ -13,4 +13,10 @@
             username=#{username}
     </select>
 
+    <!--int addUser(User user);-->
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            user(username,password)
+        values(#{username},#{password})
+    </insert>
 </mapper>
