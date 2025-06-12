@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+  <!--jquerry-->
+  <script type="text/javascript " src="js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <h1>用户注册</h1>
+<form id="form-register" action="register" method="post">
+  <table>
+    <tr>
+      <td>用户名</td>
+      <td><input type="text" name="username"><span style="color: red " id="span-username"></span></td>
+    </tr>
+    <tr>
+      <td>密码</td>
+      <td><input type="password" name="password"><span style="color: red " id="span-password"></span></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="button" onclick="register()" value="注册">
+      </td>
+    </tr>
+  </table>
+</form>
+
+<script type="text/javascript">
+  function register() {
+    $("#span-username").empty();
+    $("#span-password").empty();
+    $.ajax({
+      /*
+       * type:请求方式
+       * url:请求地址
+       * data:发送给服务器的数据
+       * dataType:返回的数据类型
+       * success:请求成功后的回调函数
+       */
+        "type": "POST",
+        "url": "/register",
+        "dataType": "json",
+        "data": $("#form-register").serialize(),
+        "success": function (json) {
+          if(json.state==1){
+            alert("注册成功");
+          }else if(json.state==3){
+            $("#span-username").text("用户名已存在");
+          }else {
+            alert("注册失败，请重试");
+          }
+        }
+    })
+  }
+</script>
+</body>
+</html>

@@ -5,7 +5,9 @@ import cn.boot1112.sdemo2.Mapper.UserMapper;
 import cn.boot1112.sdemo2.entity.User;
 import cn.boot1112.sdemo2.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -45,9 +47,11 @@ import org.springframework.web.bind.annotation.RestController;
   *              否：state=3
  *****************/
 
-@RestController
+//@Controller
+//@ResponseBody//告诉SpringBoot这是一个返回json的控制器
+@RestController//告诉SpringBoot这是一个返回json的控制器+告诉SpringBoot这是一个控制器
 public class UserController {
-    @Autowired
+    @Autowired//告诉SpringBoot自动注入
     private UserMapper userMapper;
     @RequestMapping("/login")
     public JsonResult login(String username, String password){
@@ -65,5 +69,20 @@ public class UserController {
         }
         return jsonResult;
     }
-
+    @RequestMapping("/register")
+    public JsonResult register(String username, String password){
+        JsonResult jsonResult = new JsonResult();
+        User user = userMapper.findbyusername(username);
+        if(user == null){
+            int result = userMapper.addUser(new User(username,password));
+            if(result > 0){
+                jsonResult.setState(1);
+            }else{
+                jsonResult.setState(2);
+            }
+        }else{
+            jsonResult.setState(3);
+        }
+        return jsonResult;
+    }
 }
