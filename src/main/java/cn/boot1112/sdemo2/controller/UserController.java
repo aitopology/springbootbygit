@@ -52,11 +52,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController//告诉SpringBoot这是一个返回json的控制器+告诉SpringBoot这是一个控制器
 public class UserController {
     @Autowired//告诉SpringBoot自动注入
-    private UserMapper userMapper;
-    @RequestMapping("/login")
+    private UserMapper userMapper;//创建UserMapper对象
+    @RequestMapping("/login")///映射路径
     public JsonResult login(String username, String password){
 
-        JsonResult jsonResult = new JsonResult();
+        JsonResult jsonResult = new JsonResult();//创建JsonResult对象
         User user = userMapper.findbyusername(username);
         if(user == null){
             jsonResult.setState(2);
@@ -67,7 +67,7 @@ public class UserController {
                 jsonResult.setState(3);
             }
         }
-        return jsonResult;
+        return jsonResult;//返回jsonResult对象
     }
     @RequestMapping("/register")
     public JsonResult register(String username, String password){
