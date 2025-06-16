@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script type="text/javascript" src="js1/vue.js"></script>
+</head>
+<body>
+    <div id="app" @click="addNum">
+      <!--v-text-->
+      <h3>{{msg}}哈哈</h3>
+      <h3 v-text="msg">哈哈</h3>
+      <h3 v-text="msg+123">哈哈</h3>
+      <h3 v-text="msg+'abc'">哈哈</h3>
+
+
+      <!--  v-html  -->
+      <h4 v-text="url">3333</h4>
+      <h4 v-html="url">4444444</h4>
+
+<!--        v-on-->
+        <input type="button" value="点击" v-on:click="show">
+        <input type="button" value="点击" @click="show">
+        <input type="button" value="双击" @dblclick="show">
+        <h3 @click="changeFood">{{food}}</h3>
+
+        <hr>
+        <h3>{{num}}</h3>
+<!--        .stop 修饰符 阻止冒泡-->
+        <button @click.stop="addNum">自增</button>
+
+        <a href="https://www.baidu.com" @click="getMsg">度娘</a>
+<!--        .prevent修饰符 阻止默认行为-->
+        <a href="https://www.baidu.com" @click.prevent="getMsg">度娘</a>
+
+        <form action="https://www.baidu.com">
+            <input name="name">
+            <input type="button" @click.prevent="submit" value="提交">
+        </form>
+
+<!--        键盘修饰符-->
+        <input type="text" name="name" v-on:keyup="handler">
+        <input type="text" name="name" @keyup.enter="handler" placeholder="按回车">
+        <input type="text" name="name" @keyup.space="handler" placeholder="按空格">
+    </div>
+
+<script>
+  const app = new Vue({
+    el: "#app",//挂载节点
+    data: {//数据
+      msg: '测试v-text指令',
+      url: "<a href='https://www.baidu.com'>百度</a>",
+      food: '苹果',
+      num: 100,
+    },
+    methods: {
+      // show: function () {
+      //   alert('点击了')
+      // }
+        //简写
+        show() {
+            alert('点击了')
+        },
+        changeFood() {
+            //alert(this.food)
+            if(this.food === '苹果')
+                this.food += '香蕉'
+            else
+                this.food += this.food
+        },
+        addNum() {
+            this.num += 1;
+        },
+        getMsg() {
+            return '你好'
+        },
+        submit() {
+            alert('提交了')
+        },
+        handler(){
+            alert('键盘')
+        }
+
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script type="text/javascript" src="js1/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <h1>{{hello}}</h1>
+    <h2>{{test}}</h2>
+    {{name}}<br>
+    {{school.name}}{{school.mobile}}<br>
+
+    <ul>
+        <li>{{names[0]}}</li>
+        <li>{{names[1]}}</li>
+    </ul>
+</div>
+<script>
+  const app = new Vue({
+    el: "#app",//挂载节点
+    data: {//数据
+      hello: 'hello vue',
+      test: 'test',
+      name: '张三',
+      school: {
+        name: '山西大学',
+        mobile: '12345789'
+      },
+      names: ['张三', '李四']
+    }
+  })
+</script>
+
+</body>
+</html>
