@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>模板引擎</title>
+</head>
+<body>
+<!--thymeleaf 基本语法-->
+<!--
+  1.EL 表达式 ${}  ！！！
+  2.选择表达式 *{}
+  3.文字国际化表达式 #{}
+   URL表达式 @{/...}
+  标签
+  1.th:text 替换文本
+  2.th:object 替换对象
+  3.th:value 属性赋值
+  4.th:if 判断条件
+  5.th:switch 匹配条件 th:case 匹配条件 th:default 匹配条件
+  6.th:href 绑定URL
+  7.th:src 绑定URL
+  8.th:select 绑定select
+  9.th:action 绑定action
+-->
+<h2 th:text="${message}">默认h2标题</h2>
+<p>当前时间：<span th:text="${currentTime}">2025-01-01</span></p>
+<div th:if="${not #strings.isEmpty(message)}">
+    <p th:text="'传过来message长度为：'+${#strings.length(message)}"><p>
+</div>
+</body>
+</html>
